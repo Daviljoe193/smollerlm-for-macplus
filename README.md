@@ -34,6 +34,29 @@ You'll also need a custom cable to interconnect the 31 Mac Plus's, diagram below
 
 ![](https://raw.githubusercontent.com/Daviljoe193/smollerlm-for-macplus/refs/heads/main/cablediagram.svg)
 
+If needed, here's an AI slop guide to clarify the creation process.
+
+> ### How to Actually Build This Physical Object
+> 
+> If you try to solder 31 separate interconnect cables together, the sheer volume of spliced wires will create a rat's nest that will break constantly. Instead, use the **Trunk-and-Drop** method depicted above.
+> 
+> 1. **Get a Spool of CAT5/CAT5e Cable:** You will need one continuous length of CAT5 that spans the distance of your 31 Macs.
+> 2. **Make the "Drops":**
+>    * Every 1-2 feet (depending on how close the Macs sit), carefully use a knife to shave away 2 inches of the outer PVC jacket, exposing the twisted pairs inside. **Do not cut the wires yet.**
+>    * Pull the **Orange** twisted pair out of the slit and snip it right in the middle. You now have two Orange wires coming *from* the previous node, and two Orange wires going *toward* the next node.
+>    * Strip away a tiny bit of insulation on the **Brown** wire, but *do not cut it in half*. Just expose the bare copper so you can solder to it.
+>    * Leave the **Blue** and **Green** pairs completely untouched inside the jacket. The Blue pair is going to act as your "Long Return" from Mac 30 back to Mac 0.
+> 3. **Solder the Connector:**
+>    * Take your Mini-DIN-8 Male plug. 
+>    * Solder the Orange pair coming from the *left* (Node N-1) to the **Rx** pins (5 and 8).
+>    * Solder the Orange pair going to the *right* (Node N+1) to the **Tx** pins (3 and 6).
+>    * Solder a tiny jumper wire from the exposed copper of the Brown wire to the **GND** pin (4). 
+> 4. **The Endpoints (Node 0 and Node 30):**
+>    * At **Node 30**, cut the Blue pair. Solder Node 30's Tx pins to the Blue pair pointing back down the cable.
+>    * At **Node 0**, cut the Blue pair. Solder Node 0's Rx pins to the Blue pair coming out of the cable. 
+>    
+> This completely avoids having to buy junction boxes. Inside every single Mini-DIN-8 plastic shell, you just have wires diving in from the main trunk, hitting the pins, and continuing on to the next Mac.
+
 Plug node 0 to 1, 1 to 2, until you're at node 30. Now you can finally do the dirty and run it. Just run the application on all the nodes (It'll know which node it is based on what shard[s] it has), then when they're all good, press enter on the master node, and watch as all your Mac Plus's spend an eternity ingesting the SmolLM ChatML prompt template.
 
 That's... it, really. The default inference params are a temperature of 0.8, a top_p of 0.9, a top_k of 40, a min_p of 0.1, and a repetition penalty of 1.2 (At 10 million parameters, SmollerLM 10M really needs this).
