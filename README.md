@@ -8,7 +8,7 @@ ___
 
 ### Useage
 
-First, you need the dependencies (In a VENV, silly c:) to create the database.
+First, you need the dependencies (In a VENV, silly c:) to create the model shards.
 
 `pip install torch transformers`
 
