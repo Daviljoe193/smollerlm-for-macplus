@@ -59,6 +59,6 @@ If needed, here's an AI slop guide to clarify the creation process.
 
 Plug node 0 to 1, 1 to 2, until you're at node 30. Now you can finally do the dirty and run it. Just run the application on all the nodes (It'll know which node it is based on what shard[s] it has), then when they're all good, press enter on the master node, and watch as all your Mac Plus's spend an eternity ingesting the SmolLM ChatML prompt template.
 
-That's... it, really. The default inference params are a temperature of 0.8, a top_p of 0.9, a top_k of 40, a min_p of 0.1, and a repetition penalty of 1.2 (At 10 million parameters, SmollerLM 10M really needs this).
+That's... it, really. The default inference params are a temperature of 0.8, a top_p of 0.9, a top_k of 40, a min_p of 0.05, and a repetition penalty of 1.15 (At 10 million parameters, SmollerLM 10M really needs this). Not too sure if the parameters are exactly the best for this model, but I haven't found better. You can find the parameters at line `545` of the `runsmol.c` file.
 
 This is where I'd say something like "You can run the dude's other models". No, that's not in the cards for this port.
