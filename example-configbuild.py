@@ -10,13 +10,15 @@ NUM_NODES = 31
 BASE_PORT = 5000
 
 PCE_BIN = "/home/dj-tst/build/pce-0.2.2/build/bin/pce-macplus"
+PCE_SHARE = "/home/dj-tst/build/pce-0.2.2/build/share"
 DISKS_BASE = "/home/dj-tst/build/pce-0.2.2/disks"
+
 
 #ram {{ address = 0; size = 4096K; default = 0x00 }}
 # Note: Removed the serial 1 (Printer) port. Port 0 acts as our single bidirectional "MIDI" cable.
 CFG_TEMPLATE = """\
 path = "rom"
-path = {pce_bin}
+path = "{pce_share}/pce/macplus"
 path = "-."
 memtest = 0
 system {{ model = "mac-plus" }}
@@ -59,7 +61,7 @@ def main():
             folder_id=folder_id,
             tcp_port=tcp_port,
             disks_base=DISKS_BASE,
-            pce_bin=PCE_BIN
+            pce_share=PCE_SHARE
         )
         
         cfg_name = f"pce_node_{node_id}.cfg"
