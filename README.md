@@ -12,11 +12,14 @@ First, you need the dependencies (In a VENV, silly c:) to create the database.
 
 `pip install torch transformers`
 
-And with Retro68 built and ready to use, run these commands (Substituting the toolchain file path with your actual toolchain path...
+And with Retro68 built and ready to use, run these commands (Substituting the toolchain file path with your actual toolchain path)...
 
 `mkdir build`
+
 `cd build`
+
 `cmake -DCMAKE_TOOLCHAIN_FILE='/home/dj-tst/build/Retro68/Retro68-build/toolchain/m68k-apple-macos/cmake/retro68.toolchain.cmake' ..`
+
 `make`
 
 And then, you need to run (Note: This will pull in my beloved [SmollerLM2-10M-sftb](https://huggingface.co/mehmetkeremturkcan/SmollerLM2-10M-sftb) from [mehmetkeremturkcan](https://huggingface.co/mehmetkeremturkcan) on HuggingFace)
