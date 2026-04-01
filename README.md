@@ -44,13 +44,12 @@ If needed, here's an AI slop guide to clarify the creation process.
 > 2. **Make the "Drops":**
 >    * Every 1-2 feet (depending on how close the Macs sit), carefully use a knife to shave away 2 inches of the outer PVC jacket, exposing the twisted pairs inside. **Do not cut the wires yet.**
 >    * Pull the **Orange** twisted pair out of the slit and snip it right in the middle. You now have two Orange wires coming *from* the previous node, and two Orange wires going *toward* the next node.
->    * Strip away a tiny bit of insulation on the **Brown** wire, but *do not cut it in half*. Just expose the bare copper so you can solder to it.
->    * Leave the **Blue** and **Green** pairs completely untouched inside the jacket. The Blue pair is going to act as your "Long Return" from Mac 30 back to Mac 0.
+>    * Leave the **Blue**, **Brown**, and **Green** pairs completely untouched inside the jacket. The Blue pair is going to act as your "Long Return" from Mac 30 back to Mac 0.
 > 3. **Solder the Connector:**
 >    * Take your Mini-DIN-8 Male plug. 
 >    * Solder the Orange pair coming from the *left* (Node N-1) to the **Rx** pins (5 and 8).
 >    * Solder the Orange pair going to the *right* (Node N+1) to the **Tx** pins (3 and 6).
->    * Solder a tiny jumper wire from the exposed copper of the Brown wire to the **GND** pin (4). 
+>    * ⚠️ **DO NOT connect Pin 4 (GND).** Because Macs are grounded to AC mains via their wall plugs, tying their logic board grounds together across 31 machines will create a massive ground loop that could melt the cable or destroy the serial transceivers. RS-422 is differential; it only needs the Tx/Rx pairs!
 > 4. **The Endpoints (Node 0 and Node 30):**
 >    * At **Node 30**, cut the Blue pair. Solder Node 30's Tx pins to the Blue pair pointing back down the cable.
 >    * At **Node 0**, cut the Blue pair. Solder Node 0's Rx pins to the Blue pair coming out of the cable. 
